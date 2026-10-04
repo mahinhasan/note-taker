@@ -1,0 +1,13 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure note-taking app: Express + MongoDB API that also serves the React frontend",
+  "scripts": {
+    "build": "npm --prefix backend ci --omit=dev && npm --prefix frontend ci --include=dev && npm --prefix frontend run build",
+    "start": "node backend/src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

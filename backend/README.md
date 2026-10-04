@@ -17,7 +17,7 @@ npm run seed                  # creates the first admin from ADMIN_* values in .
 npm run dev                   # or: npm start
 ```
 
-The server starts on `http://localhost:4000`. Express serves `./public` as static files, so opening the root URL shows a page that lists the endpoints.
+The server starts on `http://localhost:4000`. Express serves `./public` as static files, so opening the root URL shows a page that lists the endpoints. Once the frontend is built (`frontend/dist`), Express serves the React app instead, which is how production runs. See `../DEPLOYMENT.md`.
 
 To seed an admin without editing `.env`:
 
@@ -44,6 +44,7 @@ npm run explain
 | `LOGIN_RATE_WINDOW_MS` | no | `900000` | Window for the login rate limit |
 | `LOGIN_RATE_MAX` | no | `10` | Failed login attempts allowed per IP in each window |
 | `TRUST_PROXY` | no | `0` | Number of proxy hops to trust, so the rate limiter sees the client IP |
+| `CLIENT_DIST_DIR` | no | `../frontend/dist` | Built frontend to serve. If it exists, Express serves it and returns `index.html` for page routes like `/notes` |
 | `ADMIN_NAME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | seed only | – | Used by `scripts/seedAdmin.js` |
 
 ## Project structure
