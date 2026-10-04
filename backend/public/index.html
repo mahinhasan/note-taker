@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CareGuide API</title>
+  <style>
+    :root { --bg: #f7f7f5; --fg: #1d1d1b; --muted: #6b6b66; --line: #e2e2dc; --accent: #2f6f5e; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #161615; --fg: #ececea; --muted: #9a9a94; --line: #2c2c2a; --accent: #7cc2ad; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 system-ui, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 16px; }
+    h1 { margin: 0 0 4px; font-size: 26px; }
+    p { color: var(--muted); margin: 0 0 28px; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 28px 0 8px; }
+    ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    li { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    code { font: 13px/1.5 ui-monospace, monospace; }
+    .m { color: var(--accent); min-width: 120px; font-weight: 600; }
+    .r { color: var(--muted); margin-left: auto; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>CareGuide API</h1>
+    <p>REST API for notes and posts. Authenticate with <code>Authorization: Bearer &lt;token&gt;</code>.</p>
+
+    <h2>Auth</h2>
+    <ul>
+      <li><code class="m">POST</code><code>/api/auth/register</code><span class="r">public</span></li>
+      <li><code class="m">POST</code><code>/api/auth/login</code><span class="r">public, rate limited</span></li>
+    </ul>
+
+    <h2>Users</h2>
+    <ul>
+      <li><code class="m">GET, PATCH</code><code>/api/users/me</code><span class="r">user, admin</span></li>
+      <li><code class="m">GET, POST</code><code>/api/users</code><span class="r">admin</span></li>
+      <li><code class="m">GET</code><code>/api/users/grouped-by-interests</code><span class="r">admin</span></li>
+      <li><code class="m">GET, PATCH, DELETE</code><code>/api/users/:id</code><span class="r">admin</span></li>
+      <li><code class="m">GET</code><code>/api/users/:id/posts</code><span class="r">user, admin</span></li>
+    </ul>
+
+    <h2>Notes</h2>
+    <ul>
+      <li><code class="m">GET, POST</code><code>/api/notes</code><span class="r">own; admin sees all</span></li>
+      <li><code class="m">GET, PATCH, DELETE</code><code>/api/notes/:id</code><span class="r">owner or admin</span></li>
+    </ul>
+
+    <h2>Posts</h2>
+    <ul>
+      <li><code class="m">GET, POST</code><code>/api/posts</code><span class="r">user, admin</span></li>
+      <li><code class="m">GET</code><code>/api/posts/:id</code><span class="r">user, admin</span></li>
+      <li><code class="m">PATCH, DELETE</code><code>/api/posts/:id</code><span class="r">author or admin</span></li>
+    </ul>
+  </main>
+</body>
+</html>

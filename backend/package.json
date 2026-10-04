@@ -1,0 +1,28 @@
+{
+  "name": "careguide-api",
+  "version": "1.0.0",
+  "description": "REST API for notes and posts with role-based access, built on Express and MongoDB",
+  "main": "src/server.js",
+  "private": true,
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seedAdmin.js",
+    "seed:admin": "node scripts/seedAdmin.js",
+    "explain": "node scripts/explain.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-validator": "^7.3.2",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.4"
+  }
+}
