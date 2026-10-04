@@ -42,7 +42,7 @@ Other scripts:
 ```
 src/
 ├── main.jsx                 router + AuthProvider + App + global styles
-├── styles.css               design tokens, light/dark themes, all component styles
+├── styles.css               Care Guide brand tokens and all component styles
 ├── App.jsx                  route table
 ├── api/client.js            fetch wrapper and token storage
 ├── context/AuthContext.jsx  session state: user, token, role, loading
@@ -52,6 +52,7 @@ src/
 ├── components/
 │   ├── ui.jsx               Button, Field, Avatar, Chips, EmptyState, ConfirmButton, CopyId…
 │   ├── Icon.jsx             inline SVG icon set
+│   ├── BrandMark.jsx        Care Guide lighthouse mark
 │   ├── format.js            dates, relative time, initials, avatar colours
 │   └── …                    Navbar, route guards, forms, list items, admin tabs
 └── pages/                   Login, Notes, Posts, Profile, Admin, NotFound
@@ -59,30 +60,50 @@ src/
 
 ## Design
 
-The visual design is plain CSS in `src/styles.css`, built on CSS custom properties:
+The UI follows the **Care Guide** brand: deep navy backgrounds, an orange-red accent, Poppins and Rajdhani type, and pill-shaped buttons. Everything is plain CSS in `src/styles.css`, built on CSS custom properties.
 
-- **Design tokens**: colours, radii, shadows and spacing are variables on `:root`, so the whole theme can be changed in one place. The brand colour is teal (`--primary`).
-- **Light and dark mode**: dark mode follows the operating system setting through `prefers-color-scheme`.
-- **Layout**:
-  - A sticky, translucent header with icon navigation and the signed-in user.
-  - Pages use a centred container with a page header.
-  - Notes, Posts and Profile use a two-column layout (a form or detail card plus the list). Below 960px it collapses to one column.
-- **Components**:
-  - Cards, form fields with labels and hints, and buttons in primary, secondary, ghost and danger styles.
-  - Role badges, interest chips, avatars with generated initials and colours, and a copy-to-clipboard ID pill.
-- **States**:
-  - Loading shows skeleton placeholders on first load and spinners inside buttons.
-  - Lists that are empty show an empty state, and a "You're all caught up" footer marks the end of a list.
-  - Errors appear inline as alerts.
-- **Delete confirmation**: deleting asks for confirmation inline ("Delete this note? Yes, delete / Cancel") instead of a browser `confirm()` popup.
-- **Responsive**:
-  - On small screens, nav labels collapse to icons and the login page hides its brand panel.
-  - Tables scroll horizontally inside their card.
+**Brand tokens**
+
+| Token | Value | Used for |
+|---|---|---|
+| `--navy-900` | `#040714` | Page background |
+| `--navy-800` | `#0a1024` | Cards and surfaces |
+| `--orange` | `#ff3d00` | Primary buttons, active nav, eyebrow lines, badges, focus rings |
+| `--text` / `--muted` | `#ffffff` / `#a3a9ba` | Headings and body / secondary text |
+
+**Typography**: fonts are loaded from Google Fonts in `index.html`.
+- **Poppins** is used for headings and body text.
+- **Rajdhani** is used for the wordmark, navigation, buttons, tabs, badges and table headers.
+
+**Signature details**
+- **Eyebrow labels**: page titles carry a label with a short orange line before it ("— Your Workspace").
+- **Lighthouse mark**: drawn as inline SVG in `components/BrandMark.jsx` and reused as the favicon.
+- **Buttons**: pill-shaped orange buttons with a soft glow. The login and register buttons use the "bubble" style, a white circle with an icon at the right end.
+- **Decoration**: dotted patterns, an orange ring, and radial orange glows on the login screen.
+- **Small accents**:
+  - an orange tab on featured cards
+  - an orange edge on list items when hovered
+  - an orange underline on the active nav link
+
+**Layout and states**
+- The header stays at the top while scrolling, and the content sits in a centred container.
+- Notes, Posts and Profile use two columns, which collapse to one below 1024px.
+- Loading uses skeleton placeholders and in-button spinners. Empty lists show an empty state, and the end of a list shows "You're all caught up".
+- Errors appear inline. Delete asks for confirmation in place ("Delete this note? Yes, delete / Cancel").
+
+**Responsive and accessible**
+- **Small screens**:
+  - nav labels collapse to icons
+  - the login page hides its brand panel
+  - tables scroll inside their card
 - **Accessibility**:
-  - Every input has a `<label>`.
-  - Icon-only buttons have `aria-label`s, and focus rings are visible.
-  - Tabs use `role="tab"` with `aria-selected`.
-  - Animations are turned off for users who prefer reduced motion.
+  - every input has a `<label>`
+  - icon-only buttons have `aria-label`s
+  - tabs use `role="tab"`
+  - focus rings are visible
+  - animations are turned off for users who prefer reduced motion
+
+The app is dark-only to match the Care Guide brand. To change the theme, edit the variables at the top of `styles.css`.
 
 ## How it works
 

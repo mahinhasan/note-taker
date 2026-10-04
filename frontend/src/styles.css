@@ -362,7 +362,8 @@ code,
   grid-template-columns: minmax(0, 1fr) 390px;
 }
 
-.sticky {
+.sticky,
+.card.sticky {
   position: sticky;
   top: calc(var(--header-h) + 24px);
 }
@@ -1501,7 +1502,8 @@ code,
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .sticky {
+  .sticky,
+  .card.sticky {
     position: static;
   }
 
